@@ -24,11 +24,11 @@ export default class Link extends React.Component {
     render() {
         return (
             <div>
-                <h1>HI LOGED IN</h1>
-                <button onClick={this.onLogout.bind(this)}>LOGOUT ROFL</button>
+                <h1>Welcome to Link Shortener</h1>
+                <button onClick={this.onLogout.bind(this)}>Logout</button>
                 <LinksList/>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <input type="text" ref="url" placeholder="url"/>
+                    <input type="text" ref="url" placeholder="Enter a URL"/>
                     <button>Add</button>
                 </form>
             </div>   
