@@ -12,6 +12,31 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+    'links.setVisibility'(_id, visible) {
+        if (!this.userId) {
+            // not logged in
+            throw new Meteor.Error('not-auth'); 
+        }
+
+        new SimpleSchema({
+            _id: {
+                     type: String
+                 },
+            visible: {
+                         type: Boolean
+                     }
+        }).validate({_id, visible});
+
+        Links.update({
+            _id: _id,
+            userId: this.userId
+        }, {
+            $set: {
+                visible: visible
+            }
+        })
+    },
+
     'links.insert'(url) {
         if (!this.userId) {
             // not logged in
@@ -28,6 +53,7 @@ Meteor.methods({
 
         Links.insert({
             _id: shortid.generate(),
+            visible: true,
             url,
             userId: this.userId
         })
