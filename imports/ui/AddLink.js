@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 
 export default class AddLink extends React.Component {
     onSubmit(e) {
@@ -6,7 +7,6 @@ export default class AddLink extends React.Component {
         e.preventDefault();
         if (url) {
             Meteor.call('links.insert', url);
-            // Links.insert({ url, userId: Meteor.userId() });
             this.refs.url.value = '';
         }
     }
