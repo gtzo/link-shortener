@@ -12,6 +12,24 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+    'links.trackVisit'(_id) {
+        new SimpleSchema({
+            _id: {
+                     type: String,
+                     min: 1
+                 }
+        }).validate({ _id });
+
+        Links.update({ _id }, {
+            $set: {
+                lastVisitedAt: new Date().getTime()
+            },
+            $inc: {
+                visitedCount: 1
+            }
+        });
+    },
+
     'links.setVisibility'(_id, visible) {
         if (!this.userId) {
             // not logged in
@@ -55,7 +73,9 @@ Meteor.methods({
             _id: shortid.generate(),
             visible: true,
             url,
-            userId: this.userId
+            userId: this.userId,
+            visitedCount: 0,
+            lastVisitedAt: null
         })
     }
 })

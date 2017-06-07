@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Meteor } from 'meteor/meteor';
 import { WebApp } from 'meteor/webapp';
 
@@ -16,6 +17,7 @@ Meteor.startup(() => {
             res.statusCode = 302;
             res.setHeader('Location', link.url);
             res.end();
+            Meteor.call('links.trackVisit', _id);
         } else {
             // don't recognize the shortened id
             next();

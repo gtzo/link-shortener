@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Clipboard from 'clipboard';
+import moment from 'moment';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -31,11 +32,22 @@ export default class LinksListItem extends React.Component {
         setTimeout(() => this.button.innerText = 'copy', 1000);
     }
 
+    renderStats() {
+        const visitMessage = this.props.visitedCount === 1 ? 'visit' : 'visits';
+        let visitedMessage = null;
+        if (typeof this.props.lastVisitedAt === 'number') {
+            visitedMessage = `(visited ${moment(this.props.lastVisitedAt).fromNow()})`;
+        }
+
+        return <p>{this.props.visitedCount} {visitMessage} - {visitedMessage}</p>
+    }
+
     render() {
         return (
             <div>
                 <p key={this.props._id}>{this.props.url} =/= {this.props.shortUrl}</p>
                 <p>{this.props.visible.toString()}</p>
+                {this.renderStats()}
                 <button ref={(button) => this.button = button} data-clipboard-text={this.props.shortUrl}>{this.state.justCopied ? 'copied!!!' : 'copy'}</button>
                 <button onClick={() => {
                     Meteor.call('links.setVisibility', this.props._id, !this.props.visible);
@@ -50,5 +62,7 @@ LinksListItem.propTypes = {
     url: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     shortUrl: PropTypes.string.isRequired,
-    visible: PropTypes.bool.isRequired
+    visible: PropTypes.bool.isRequired,
+    visitedCount: PropTypes.number.isRequired,
+    lastVisitedAt: PropTypes.number
 }
