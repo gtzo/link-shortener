@@ -1,9 +1,11 @@
-import React from 'react';
+import React from 'react/react';
 import { Meteor } from 'meteor/meteor'
 import { Tracker } from 'meteor/tracker';
 
 import { Links } from '../api/links';
+import { Session } from 'meteor/session';
 import LinksListItem from './LinksListItem';
+import LinksListFilters from './LinksListFilters';
 
 export default class LinksList extends React.Component {
     constructor(props) {
@@ -17,7 +19,9 @@ export default class LinksList extends React.Component {
         console.log('mounted');
         this.linksTracker = Tracker.autorun(() => {
             Meteor.subscribe('links');
-            const links = Links.find().fetch(); 
+            const links = Links.find({
+                visible: Session.get('showVisible')
+            }).fetch(); 
             this.setState({links});
         })
     }
