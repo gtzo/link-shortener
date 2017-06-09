@@ -39,7 +39,7 @@ export default class AddLink extends React.Component {
     render() {
         return(
             <div>
-                <button onClick={() => this.setState({isOpen: true})}>add link</button>
+                <button className="button" onClick={() => this.setState({isOpen: true})}>add link</button>
                 <Modal 
                     isOpen={this.state.isOpen}
                     onAfterOpen={() => this.refs.url.focus()}
