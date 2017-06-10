@@ -15,6 +15,7 @@ $input-border: $grey;
 
 // Spacing
 $space: 1.4rem;
+$site-max-width: 50rem;
 
 // Button
 $button-bg: $brand-primary;
@@ -23,3 +24,7 @@ $button-pill-color: $brand-primary;
 $button-secondary-bg: #f9f9f9;
 $button-secondary-color: #777777;
 $button-secondary-border-color: $grey;
+
+// Header
+$header-color: white;
+$header-bg: $brand-primary;

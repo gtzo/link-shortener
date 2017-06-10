@@ -10,9 +10,11 @@ export default () => {
     return (
         <div>
             <PrivateHeader title="Welcome to Link Shortener"/>
-            <AddLink/>
-            <LinksListFilters/>
-            <LinksList/>
+            <div className="page-content">
+                <AddLink/>
+                <LinksListFilters/>
+                <LinksList/>
+            </div>
         </div>
     );
 };
