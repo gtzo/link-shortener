@@ -9,10 +9,10 @@ import AddLink from './AddLink';
 export default () => {
     return (
         <div>
-            <PrivateHeader title="Welcome to Link Shortener"/>
+            <PrivateHeader title="Short Link by GT"/>
             <div className="page-content">
-                <AddLink/>
                 <LinksListFilters/>
+                <AddLink/>
                 <LinksList/>
             </div>
         </div>

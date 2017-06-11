@@ -1,6 +1,8 @@
 // Colors:
 $grey: #dddddd;
+$dark-grey: #777777;
 $brand-primary: #5b4681;
+$light-grey: #f9f9f9;
 
 // Boxed view vars
 $boxed-view-overlay-bg: $grey;
@@ -21,10 +23,15 @@ $site-max-width: 50rem;
 $button-bg: $brand-primary;
 $button-color: white;
 $button-pill-color: $brand-primary;
-$button-secondary-bg: #f9f9f9;
-$button-secondary-color: #777777;
+$button-secondary-bg: $light-grey;
+$button-secondary-color: $dark-grey;
 $button-secondary-border-color: $grey;
 
 // Header
 $header-color: white;
 $header-bg: $brand-primary;
+
+// Item
+$item-bg: $light-grey; 
+$item-border: darken($item-bg, 8%);
+$item-text-color: $dark-grey;
